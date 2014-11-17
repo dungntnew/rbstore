@@ -15,8 +15,8 @@ class Product < ActiveRecord::Base
   # ensuare title has length with mininum: 2 and maximum: 20
   validates :title, length: {
     minimum: 5,
-    maximum: 20,
-    too_long: 'title too long, must less than 20',
+    maximum: 128,
+    too_long: 'title too long, must less than 128',
     too_short: 'title too short, must longger 5'
   
   }
