@@ -1,8 +1,10 @@
 class LineItemsController < ApplicationController
   include CurrentCart
+  include CurrentCounter
   before_action :set_cart, only: [:create]
+  before_action :untrack, only: [:create] 
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /line_items
   # GET /line_items.json
   def index
@@ -27,7 +29,7 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
     product = Product.find(params[:product_id])
-    @line_item = LineItem.new(line_item_params)
+    @line_item = @cart.line_items.build(product: product)
 
     respond_to do |format|
       if @line_item.save
