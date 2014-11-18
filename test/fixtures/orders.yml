@@ -4,10 +4,10 @@ one:
   name: Dave Thomas
   address: MyText
   email: dave@example.org
-  play_type: Check
+  pay_type: Check
 
 two:
   name: MyString
   address: MyText
   email: MyString
-  play_type: MyString
+  pay_type: MyString
