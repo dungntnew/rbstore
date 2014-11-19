@@ -52,7 +52,9 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
+      ship_date_changed = @order.ship_date_changed?
       if @order.update(order_params)
+        Notifier.shipped(@order).deliver if ship_date_changed
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
